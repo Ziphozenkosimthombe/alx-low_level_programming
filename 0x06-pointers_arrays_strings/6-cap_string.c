@@ -1,47 +1,34 @@
 #include "main.h"
-#include <ctype.h>
 
 /**
- * cap_string - function that capitalizes alll the words of a string
- * @str: input
- * Return: str
+ * cap_string - capitalizes everey word of a string
+ * @s: string to modify
+ *
+ * Return: the resulting string
  */
-
-char *cap_string(char *str)
+char *cap_string(char *s)
 {
-	int i = 0;
+	int i, j;
 
-	while (str[i] != '\0')
+	char spe[13] = {' ', '\t', '\n', ',', ';', '.',
+		'!', '?', '"', '(', ')', '{', '}'};
+
+	for (i = 0; s[i] != '\0'; i++)
 	{
-	/*capitalized the first letter of word*/
-		if (i == 0 || isspace(str[i - 1]))
+		if (i == 0 && s[i] >= 'a' && s[i] <= 'z')
+			s[i] -= 32;
+
+		for (j = 0; j < 13; j++)
 		{
-			str[i] = toupper(str[i]);
-		}
-		/*handle special cases*/
-		else
-		{
-			switch (str[i])
+			if (s[i] == spe[j])
 			{
-				case ',':
-				case ';':
-				case '.':
-				case '!':
-				case '?':
-				case '\"':
-				case '(':
-				case ')':
-				case '{':
-				case '}':
-				if (!isspace(str[i - 1]))
+				if (s[i + 1] >= 'a' && s[i + 1] <= 'z')
 				{
-					str[i - 1] = toupper(str[i - 1]);
+					s[i + 1] -= 32;
 				}
-				str[i] = toupper(str[i]);
-				break;
+			}
 		}
 	}
-	i++;
-	}
-	return (str);
+
+	return (s);
 }
