@@ -8,16 +8,19 @@
 
 char *leet(char *str)
 {
-	char *leetspeak = "aAeEoOtTlL44337011";
-		int i, j;
+
+	int i, j;
+
+	char *a = "aAeEoOtTlL";
+		char *b = "4433007711";
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		for (j = 0; j < 10; j++)
 		{
-			if (str[i] == leetspeak[j])
+			if (str[i] == a[j])
 			{
-				str[i] = leetspeak[j + 10];
+				str[i] = b[j];
 				break;
 			}
 		}
