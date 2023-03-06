@@ -13,7 +13,7 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 
 
 	char* dest_ptr = dest;
-	const char* src_ptr = src;
+	char* src_ptr = src;
 
 	unsigned int i;
 
