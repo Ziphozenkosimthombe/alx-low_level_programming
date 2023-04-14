@@ -182,7 +182,7 @@ void print_osabi(unsigned char *e_ident)
  */
 void print_abi(unsigned char *e_ident)
 {
-	printf("  ABI Version:                              %d\n",
+	printf("  ABI Version:                       %d\n",
 	       e_ident[EI_ABIVERSION]);
 }
 
@@ -261,14 +261,14 @@ void close_elf(int elf)
 
 /**
  * main - Displays the information contained in the
- * 	  ELF header at the start of an ELF file
+ * ELF header at the start of an ELF file
  * @argc: the number of arguments supplied to the program
  * @argv: an array of pointers to the arguments
  *
  * Return: 0 on success
  *
  * Description: if the file is not an ELF file or
- * 		the function fails - exit code 98
+ * the function fails - exit code 98
  */
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
@@ -293,7 +293,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	{
 		free(header);
 		close_elf(o);
-		dprintf(STDERR_FILENO, "Error: '%s': No such file\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
 
