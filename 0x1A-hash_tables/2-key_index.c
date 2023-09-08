@@ -2,7 +2,7 @@
 
 /**
  * key_index - founding the index which the key, values shouldbe stored.
- * 		in the array of the h_table.
+ * in the array of the h_table.
  * @key: the index key.
  * @size: the array size of the hash_table
  *
