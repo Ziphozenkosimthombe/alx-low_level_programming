@@ -8,28 +8,28 @@
  * @value: The associated value with  the key.
  *
  * Return:1 if it succeeded,
- * 		otherwise 0
+ * otherwise 0
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *new;
-	char *copy_value;
-	unsigned long int indx, a;
+	char *value_copy;
+	unsigned long int index, i;
 
 	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
 
-	copy_value = strdup(value);
-	if (copy_value == NULL)
+	value_copy = strdup(value);
+	if (value_copy == NULL)
 		return (0);
 
-	indx = key_index((const unsigned char *)key, ht->size);
-	for (a = indx; ht->array[a]; a++)
+	index = key_index((const unsigned char *)key, ht->size);
+	for (i = index; ht->array[i]; i++)
 	{
-		if (strcmp(ht->array[a]->key, key) == 0)
+		if (strcmp(ht->array[i]->key, key) == 0)
 		{
-			free(ht->array[a]->value);
-			ht->array[a]->value = copy_value;
+			free(ht->array[i]->value);
+			ht->array[i]->value = value_copy;
 			return (1);
 		}
 	}
@@ -37,12 +37,18 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	new = malloc(sizeof(hash_node_t));
 	if (new == NULL)
 	{
-		free(copy_value);
+		free(value_copy);
 		return (0);
 	}
-	new->value = copy_value;
-	new->next = ht->array[indx];
-	ht->array[indx] = new;
+	new->key = strdup(key);
+	if (new->key == NULL)
+	{
+		free(new);
+		return (0);
+	}
+	new->value = value_copy;
+	new->next = ht->array[index];
+	ht->array[index] = new;
 
 	return (1);
 }
