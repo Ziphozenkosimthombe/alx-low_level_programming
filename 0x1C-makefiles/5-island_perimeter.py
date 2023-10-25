@@ -4,7 +4,7 @@
 
 def island_perimeter(grid):
     """
-    returns the perimeter of 
+    returns the perimeter of
     the island described in grid:
     """
     count = 0
@@ -29,4 +29,4 @@ def island_perimeter(grid):
                 # Add to the count based on the number of land neighbors
                 count += 4 - neighbors
 
-    return count 
+    return count
